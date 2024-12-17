@@ -1,4 +1,7 @@
-﻿# Meu Repositório
-Para iniciar utilize o comando: python manage.py runserver     na raíz do projeto.
+﻿# CRIAÇÃO DE UMA API REST EM DJANGO!
+##Para iniciar utilize o comando##:
+   ```bash
+   python manage.py runserver
+  ```
 
-O projeto está utilizando sqlite!
+O projeto está utilizando SQLITE!
