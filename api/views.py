@@ -6,11 +6,13 @@ from .serializers import PessoaSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.hashers import make_password
 
+
 @api_view(['GET'])
 def getData(request):
     pessoas = Pessoa.objects.all()
     serializer = PessoaSerializer(pessoas, many=True)
     return Response(serializer.data)
+
 
 @api_view(['POST'])
 def addData(request):
@@ -37,10 +39,12 @@ def updateData(request, pk):
         pessoa = Pessoa.objects.get(pk=pk)
     except Pessoa.DoesNotExist:
         return Response({"detail": "Not found."}, status=404)
+    
     serializer = PessoaSerializer(pessoa, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
+    
     return Response(serializer.errors, status=400)
 
 
@@ -62,5 +66,6 @@ def login(request):
             'refresh': str(refresh),
             'access': str(refresh.access_token)
         })
+    
     else:
         return Response({"detail": "Credenciais inválidas."}, status=401)
